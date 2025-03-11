@@ -36,17 +36,20 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(12, 12);
+            pictureBox1.Location = new Point(22, 26);
+            pictureBox1.Margin = new Padding(6);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(843, 625);
+            pictureBox1.Size = new Size(1247, 1060);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
             // button1
             // 
-            button1.Location = new Point(1309, 36);
+            button1.Location = new Point(1582, 85);
+            button1.Margin = new Padding(6);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(139, 49);
             button1.TabIndex = 1;
             button1.Text = "open file";
             button1.UseVisualStyleBackColor = true;
@@ -54,22 +57,25 @@
             // 
             // flowLayoutPanel1
             // 
-            flowLayoutPanel1.Location = new Point(1198, 98);
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
+            flowLayoutPanel1.Location = new Point(1345, 251);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(294, 524);
+            flowLayoutPanel1.Size = new Size(550, 773);
             flowLayoutPanel1.TabIndex = 2;
+            flowLayoutPanel1.WrapContents = false;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1518, 649);
+            ClientSize = new Size(1973, 1254);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(button1);
             Controls.Add(pictureBox1);
+            Margin = new Padding(6);
             Name = "Form1";
             Text = "Form1";
-            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
