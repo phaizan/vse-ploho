@@ -12,6 +12,7 @@ namespace СЦОИ_лаба_1
         {
             public Bitmap Image { get; set; }
             public float Opacity { get; set; } = 1.0f;
+            private string _blendMode;
             public string BlendMode { get; set; } = "Нет";
         }
 
@@ -149,25 +150,27 @@ namespace СЦОИ_лаба_1
             // Создание панели для слоя
             Panel layerPanel = new Panel
             {
-                Width = 500,
-                Height = 600, // Увеличиваем высоту панели, чтобы разместить все элементы, включая кнопки
+                Width = 300,
+                Height = 200, // Увеличиваем высоту панели, чтобы разместить все элементы, включая кнопки
                 BorderStyle = BorderStyle.FixedSingle,
+                Tag = layer
             };
 
             PictureBox mini = new PictureBox
             {
                 Image = layer.Image,
                 SizeMode = PictureBoxSizeMode.Zoom,
-                Width = 300,
-                Height = 300,
+                Width = 150,
+                Height = 150,
             };
 
             ComboBox blendMode = new ComboBox
             {
-                Width = 300
+                Width = 150,
+                Tag = layer
             };
             blendMode.Items.AddRange(new string[] { "Нет", "Сумма", "Разность", "Умножение", "Среднее" });
-            blendMode.SelectedIndex = 0;
+            blendMode.SelectedItem = layer.BlendMode;
             blendMode.SelectedIndexChanged += (s, ev) =>
             {
                 layer.BlendMode = blendMode.SelectedItem.ToString();
@@ -180,7 +183,7 @@ namespace СЦОИ_лаба_1
                 Maximum = 100,
                 Value = (int)(layer.Opacity * 100),
                 TickFrequency = 10,
-                Width = 200
+                Width = 150
             };
             opacityTrack.Scroll += (s, ev) =>
             {
@@ -192,8 +195,8 @@ namespace СЦОИ_лаба_1
             Button moveUpButton = new Button
             {
                 Text = "↑",
-                Width = 70,
-                Height = 70
+                Width = 50,
+                Height = 50
             };
             moveUpButton.Click += (s, ev) =>
             {
@@ -204,8 +207,8 @@ namespace СЦОИ_лаба_1
             Button moveDownButton = new Button
             {
                 Text = "↓",
-                Width = 70,
-                Height = 70
+                Width = 50,
+                Height = 50
             };
             moveDownButton.Click += (s, ev) =>
             {
@@ -221,21 +224,23 @@ namespace СЦОИ_лаба_1
             layerPanel.Controls.Add(moveDownButton);
 
             // Расположим элементы внутри панели
-            mini.Top = 10;
+            mini.Top = -20;
             mini.Left = (layerPanel.Width - mini.Width) / 2;
-            blendMode.Top = mini.Bottom + 10;
+            blendMode.Top = mini.Bottom;
             blendMode.Left = (layerPanel.Width - blendMode.Width) / 2;
             opacityTrack.Top = blendMode.Bottom + 10;
             opacityTrack.Left = (layerPanel.Width - opacityTrack.Width) / 2;
-            moveUpButton.Top = opacityTrack.Bottom + 10;
-            moveUpButton.Left = (layerPanel.Width - moveUpButton.Width) / 2;
-            moveDownButton.Top = moveUpButton.Bottom + 5;
-            moveDownButton.Left = (layerPanel.Width - moveDownButton.Width) / 2;
+            moveUpButton.Top = mini.Bottom;
+            moveUpButton.Left = layerPanel.Width - 65;
+            moveDownButton.Top = mini.Bottom;
+            moveDownButton.Left = 15;
 
             // Добавляем панель в FlowLayoutPanel
             flowLayoutPanel1.Controls.Add(layerPanel);
         }
 
+
+       
 
 
         private void MoveLayerUp(Layer layer)
